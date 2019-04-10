@@ -17,7 +17,7 @@ h1 {
     padding: 0.5em;
 }
 
-#subtitles {
+#transcript {
     text-align: center;
 }
 
@@ -32,7 +32,7 @@ h1 {
     background-color: rgba(26, 175, 255, 0.5);
 }
 
-.anger {
+.angry {
     background-color: rgba(255, 21, 0, 0.5);
 }
 
