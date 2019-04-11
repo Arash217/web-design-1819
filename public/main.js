@@ -1,4 +1,4 @@
-const audioPlayer = new Plyr('audio', {});
+const player = new Plyr('audio', {});
 const transcriptNode = document.querySelector('#transcript');
 
 /* TODO: transcript to json */
@@ -29,7 +29,7 @@ const transcript = [
 const transcriptList = [].concat(...transcript);
 
 const renderTranscript = () => {
-    let transcriptSpeecheNodes = document.createElement('div');
+    let SpeecheNodes = document.createElement('div');
     let i = 0;
 
     transcript.forEach(speech => {
@@ -37,32 +37,31 @@ const renderTranscript = () => {
 
         speech.forEach(word => {
             const wordNode = document.createElement('span');
-            wordNode.setAttribute('id', 'c_' + i++);
-            wordNode.innerText = word.text + ' ';
+            wordNode.setAttribute('id',  `word_${i++}`);
+            wordNode.innerText = `${word.text} `;
             speechNode.appendChild(wordNode);
         });
 
-        transcriptSpeecheNodes.appendChild(speechNode);
+        SpeecheNodes.appendChild(speechNode);
     });
-    transcriptNode.appendChild(transcriptSpeecheNodes);
+    transcriptNode.appendChild(SpeecheNodes);
 };
 
 renderTranscript();
 
 /* Todo: optimize performance */
 
-audioPlayer.on('timeupdate', () => {
+player.on('timeupdate', () => {
     for (let i = 0; i < transcriptList.length; i++) {
         const speech = transcriptList[i];
-        const subtitleNode = document.querySelector('#transcript #c_' + i);
-        
-        if (audioPlayer.currentTime >= speech.end) {
+        const subtitleNode = document.querySelector(`#transcript #word_${i}`);
+        if (player.currentTime >= speech.end) {
             subtitleNode.classList.remove('grey');
             subtitleNode.classList.add('black');
             subtitleNode.classList.add(speech.emotion);
-        } else {
-            subtitleNode.classList.remove(...subtitleNode.classList);
-            subtitleNode.classList.add('grey');
+            continue;
         }
+        subtitleNode.classList.remove(...subtitleNode.classList);
+        subtitleNode.classList.add('grey');
     }
 });
