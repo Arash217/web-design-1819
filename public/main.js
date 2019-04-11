@@ -1,67 +1,87 @@
-const player = new Plyr('audio', {});
+const player = new Plyr('audio', {'preload': 'auto'});
 const transcriptNode = document.querySelector('#transcript');
 
-/* TODO: transcript to json */
-const transcript = [
-    [
-        {start: 0.125, end: 0.225, text: 'There', emotion: 'happy'},
-        {start: 0.225, end: 0.485, text: 'were', emotion: 'happy'},
-        {start: 0.485, end: 1.085, text: '10 in', emotion: 'happy'},
-    ],
-    [
-        {start: 1.085, end: 1.325, text: 'his', emotion: 'happy'},
-        {start: 1.325, end: 1.685, text: 'bed', emotion: 'happy'},
-        {start: 1.685, end: 1.965, text: 'and the', emotion: 'happy'},
-    ],
-    [
-        {start: 1.965, end: 2.245, text: 'little', emotion: 'happy'},
-        {start: 2.245, end: 2.565, text: 'one', emotion: 'happy'},
-        {start: 2.565, end: 2.985, text: 'said', emotion: 'happy'},
-    ],
-    [
-        {start: 2.985, end: 3.485, text: 'Roll', emotion: 'angry'},
-        {start: 3.485, end: 3.965, text: 'over!', emotion: 'angry'},
-        {start: 3.965, end: 4.805, text: 'Roll', emotion: 'angry'},
-        {start: 4.805, end: 5.405, text: 'over!', emotion: 'angry'}
-    ]
-];
+transcript[0].speaker = 'Peter Kafka';
+transcript[1].speaker = 'Michael Barbaro';
+transcript[2].speaker = 'Peter Kafka';
+transcript[3].speaker = 'Michael Barbaro';
+transcript[4].speaker = 'Peter Kafka';
+transcript[5].speaker = 'Michael Barbaro';
 
 const transcriptList = [].concat(...transcript);
 
 const renderTranscript = () => {
-    let SpeecheNodes = document.createElement('div');
+    const speechesNodes = document.createElement('div');
+    speechesNodes.classList.add('speeches');
     let i = 0;
 
     transcript.forEach(speech => {
-        let speechNode = document.createElement('p');
+        const speechNode = document.createElement('div');
+        const speakerNode = document.createElement('span');
+
+        speechNode.classList.add('speech');
+        speakerNode.innerText = speech.speaker;
+        speakerNode.classList.add('speaker');
 
         speech.forEach(word => {
             const wordNode = document.createElement('span');
             wordNode.setAttribute('id',  `word_${i++}`);
             wordNode.innerText = `${word.text} `;
+            const {message} = word;
+
+            console.log(message);
+            if (message){
+                const tippyInstance = tippy(wordNode, {
+                    arrow: true,
+                    content: word.message
+                });
+                word.tippy = tippyInstance;
+                tippyInstance.disable();
+            }
+
             speechNode.appendChild(wordNode);
         });
 
-        SpeecheNodes.appendChild(speechNode);
+        speechesNodes.appendChild(speakerNode);
+        speechesNodes.appendChild(speechNode);
+
     });
-    transcriptNode.appendChild(SpeecheNodes);
+    transcriptNode.appendChild(speechesNodes);
 };
 
 renderTranscript();
 
 /* Todo: optimize performance */
-
 player.on('timeupdate', () => {
     for (let i = 0; i < transcriptList.length; i++) {
-        const speech = transcriptList[i];
-        const subtitleNode = document.querySelector(`#transcript #word_${i}`);
-        if (player.currentTime >= speech.end) {
-            subtitleNode.classList.remove('grey');
-            subtitleNode.classList.add('black');
-            subtitleNode.classList.add(speech.emotion);
+        const word = transcriptList[i];
+        const wordNode = document.querySelector(`#transcript #word_${i}`);
+
+        if (player.currentTime >= word.end) {
+            if (!word.read){
+                wordNode.classList.remove('grey');
+                wordNode.classList.add('black');
+
+                if (word.tippy){
+                    word.tippy.enable();
+                    word.tippy.show();
+                }
+
+                word.read = true;
+            }
             continue;
         }
-        subtitleNode.classList.remove(...subtitleNode.classList);
-        subtitleNode.classList.add('grey');
+
+        if (word.read){
+            wordNode.classList.remove(...wordNode.classList);
+            wordNode.classList.add('grey');
+
+            if (word.tippy){
+                word.tippy.hide();
+                word.tippy.disable();
+            }
+
+            word.read = false;
+        }
     }
 });
