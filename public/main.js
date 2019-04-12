@@ -25,15 +25,20 @@ const renderTranscript = () => {
 
         speech.forEach(word => {
             const wordNode = document.createElement('span');
-            wordNode.setAttribute('id',  `word_${i++}`);
+            wordNode.setAttribute('id', `word_${i++}`);
             wordNode.innerText = `${word.text} `;
             const {message} = word;
 
-            console.log(message);
-            if (message){
+            if (message) {
                 const tippyInstance = tippy(wordNode, {
                     arrow: true,
-                    content: word.message
+                    content: word.message,
+                    hideOnClick: false,
+                    onShow(instance) {
+                        setTimeout(() => {
+                            instance.hide();
+                        }, 5000);
+                    }
                 });
                 word.tippy = tippyInstance;
                 tippyInstance.disable();
@@ -58,11 +63,11 @@ player.on('timeupdate', () => {
         const wordNode = document.querySelector(`#transcript #word_${i}`);
 
         if (player.currentTime >= word.end) {
-            if (!word.read){
+            if (!word.read) {
                 wordNode.classList.remove('grey');
                 wordNode.classList.add('black');
 
-                if (word.tippy){
+                if (word.tippy) {
                     word.tippy.enable();
                     word.tippy.show();
                 }
@@ -72,11 +77,11 @@ player.on('timeupdate', () => {
             continue;
         }
 
-        if (word.read){
+        if (word.read) {
             wordNode.classList.remove(...wordNode.classList);
             wordNode.classList.add('grey');
 
-            if (word.tippy){
+            if (word.tippy) {
                 word.tippy.hide();
                 word.tippy.disable();
             }
