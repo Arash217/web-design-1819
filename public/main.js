@@ -1,6 +1,8 @@
 const player = new Plyr('audio', {'preload': 'auto'});
 const transcriptNode = document.querySelector('#transcript');
 
+/* Different datastructuur? */
+
 transcript[0].speaker = 'Peter Kafka';
 transcript[1].speaker = 'Michael Barbaro';
 transcript[2].speaker = 'Peter Kafka';
