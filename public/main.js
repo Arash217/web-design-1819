@@ -3,12 +3,12 @@ const transcriptNode = document.querySelector('#transcript');
 
 /* Different datastructuur? */
 
-transcript[0].speaker = 'Peter Kafka';
-transcript[1].speaker = 'Michael Barbaro';
-transcript[2].speaker = 'Peter Kafka';
-transcript[3].speaker = 'Michael Barbaro';
-transcript[4].speaker = 'Peter Kafka';
-transcript[5].speaker = 'Michael Barbaro';
+transcript[0].speaker = {name: 'Peter Kafka', photo: 'images/peter.png'};
+transcript[1].speaker = {name: 'Michael Barbaro', photo: 'images/michael.png'};
+transcript[2].speaker = {name: 'Peter Kafka', photo: 'images/peter.png'};
+transcript[3].speaker = {name: 'Michael Barbaro', photo: 'images/michael.png'};
+transcript[4].speaker = {name: 'Peter Kafka', photo: 'images/peter.png'};
+transcript[5].speaker = {name: 'Michael Barbaro', photo: 'images/michael.png'};
 
 const transcriptList = [].concat(...transcript);
 
@@ -19,11 +19,15 @@ const renderTranscript = () => {
 
     transcript.forEach(speech => {
         const speechNode = document.createElement('div');
-        const speakerNode = document.createElement('span');
+        const speakerNode = document.createElement('div');
+        const speakerPictureNode = document.createElement('img');
+        const wordsContainerNode = document.createElement('div');
 
         speechNode.classList.add('speech');
-        speakerNode.innerText = speech.speaker;
+        speakerPictureNode.src = speech.speaker.photo;
+        speakerNode.appendChild(speakerPictureNode);
         speakerNode.classList.add('speaker');
+        wordsContainerNode.classList.add('words');
 
         speech.forEach(word => {
             const wordNode = document.createElement('span');
@@ -46,9 +50,10 @@ const renderTranscript = () => {
                 tippyInstance.disable();
             }
 
-            speechNode.appendChild(wordNode);
+            wordsContainerNode.appendChild(wordNode);
         });
 
+        speechNode.appendChild(wordsContainerNode);
         speechesNodes.appendChild(speakerNode);
         speechesNodes.appendChild(speechNode);
 

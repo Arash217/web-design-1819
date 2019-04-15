@@ -9,7 +9,7 @@ body {
 }
 
 header {
-   text-align: center;
+    text-align: center;
 }
 
 h1 {
@@ -25,13 +25,37 @@ h1 {
 
 .speaker {
     color: #000;
+    border-radius: 50%;
+    height: 80px;
+    width: 80px;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.speaker > img {
+    height: 100%;
+    width: auto;
+    position: absolute;
 }
 
 .speeches {
     display: grid;
-    grid-template-columns: 25% 75%;
+    grid-template-columns: 15% 85%;
     width: 800px;
     grid-gap: 1em;
+    margin-bottom: 75px;
+}
+
+.speech {
+    position: relative;
+    display: table;
+}
+
+.words {
+    vertical-align: middle;
+    display: table-cell;
 }
 
 .audio-player {
