@@ -1,14 +1,25 @@
 const player = new Plyr('audio', {'preload': 'auto'});
 const transcriptNode = document.querySelector('#transcript');
 
+// let audio;
+//
+// function preload() {
+//     audio = loadSound(player.source);
+// }
+
 /* Different datastructuur? */
 
-transcript[0].speaker = {name: 'Peter Kafka', photo: 'images/peter.png'};
-transcript[1].speaker = {name: 'Michael Barbaro', photo: 'images/michael.png'};
-transcript[2].speaker = {name: 'Peter Kafka', photo: 'images/peter.png'};
-transcript[3].speaker = {name: 'Michael Barbaro', photo: 'images/michael.png'};
-transcript[4].speaker = {name: 'Peter Kafka', photo: 'images/peter.png'};
-transcript[5].speaker = {name: 'Michael Barbaro', photo: 'images/michael.png'};
+const peter = {name: 'Peter Kafka', photo: 'images/peter.png'};
+const michael = {name: 'Michael Barbaro', photo: 'images/michael.png'};
+
+transcript[0].speaker = peter;
+transcript[1].speaker = michael;
+transcript[2].speaker = peter;
+transcript[3].speaker = michael;
+transcript[4].speaker = peter;
+transcript[5].speaker = michael;
+
+transcript.forEach(speech => speech.forEach(word => word.speaker = speech.speaker));
 
 const transcriptList = [].concat(...transcript);
 
@@ -97,3 +108,29 @@ player.on('timeupdate', () => {
         }
     }
 });
+
+// let cnv;
+// let amplitude;
+//
+// function setup() {
+//     cnv = createCanvas(100, 100);
+//     amplitude = new p5.Amplitude();
+//
+//     // start / stop the sound when canvas is clicked
+//
+//     player.on('play', () => {
+//         audio.play();
+//     });
+//
+//     player.on('pause', () => {
+//         audio.stop();
+//     });
+// }
+//
+// function draw() {
+//     background(0);
+//     fill(255);
+//     var level = amplitude.getLevel();
+//     var size = map(level, 0, 1, 0, 200);
+//     ellipse(width/2, height/2, size + 80, size + 80);
+// }
