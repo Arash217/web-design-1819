@@ -52,7 +52,8 @@ const renderTranscript = () => {
                     content: word.message,
                     hideOnClick: false,
                     onShow(instance) {
-                        setTimeout(() => {
+                        clearTimeout(instance.timeOutId);
+                        instance.timeOutId = setTimeout(() => {
                             instance.hide();
                         }, 5000);
                     }
@@ -88,6 +89,7 @@ player.on('timeupdate', () => {
                 if (word.tippy) {
                     word.tippy.enable();
                     word.tippy.show();
+                    wordNode.classList.add('highlighted');
                 }
 
                 word.read = true;
