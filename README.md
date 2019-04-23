@@ -31,3 +31,13 @@ I was assigned to find a solution for her problem, so that she too can fully enj
 
 ### User scenario
 Marie wants to read the transcription of a podcast and understand the nuances(clapping in the background, jokes, etc.) in the podcast, that is most of the time lost, because of it not being added to the transcription.
+
+### Exclusive Design Principles
+
+####Study Situation
+
+####Ignore Conventions
+
+####Prioritise Identity
+
+####Add Nonsense
