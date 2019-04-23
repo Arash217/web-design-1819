@@ -23,6 +23,8 @@ transcript.forEach(speech => speech.forEach(word => word.speaker = speech.speake
 
 const transcriptList = [].concat(...transcript);
 
+const capitalizeFirstLetter = string => string.charAt(0).toUpperCase() + string.slice(1);
+
 const renderTranscript = () => {
     const speechesNodes = document.createElement('div');
     speechesNodes.classList.add('speeches');
@@ -48,8 +50,9 @@ const renderTranscript = () => {
 
             if (message) {
                 const tippyInstance = tippy(wordNode, {
+                    theme: word.emotion,
                     arrow: true,
-                    content: word.message,
+                    content: `${capitalizeFirstLetter(word.emotion)} - ${word.message}`,
                     hideOnClick: false,
                     onShow(instance) {
                         clearTimeout(instance.timeOutId);
@@ -89,7 +92,7 @@ player.on('timeupdate', () => {
                 if (word.tippy) {
                     word.tippy.enable();
                     word.tippy.show();
-                    wordNode.classList.add('highlighted');
+                    wordNode.classList.add(word.emotion);
                 }
 
                 word.read = true;

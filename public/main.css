@@ -81,6 +81,22 @@ h1 {
     color: #000;
 }
 
-.highlighted {
-    background-color: rgba(0, 191, 255, 0.3);
+.tippy-tooltip.surprise-theme, .surprise {
+    background-color: #b2ecff;
+    color: #000;
+}
+
+.tippy-tooltip.joy-theme, .joy {
+  background-color: #FFE854;
+    color: #000;
+}
+
+.tippy-tooltip.trust-theme, .trust {
+    background-color: #90ff81;
+    color: #000;
+}
+
+.tippy-tooltip.anger-theme, .anger {
+    background-color: #ff7e74;
+    color: #000;
 }

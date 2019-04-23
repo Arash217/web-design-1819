@@ -427,7 +427,8 @@ const transcript = [
         {
             "text": "Media?",
             "end": "30.300",
-            "message": "Audience cheering & clapping"
+            "message": "Audience cheering & clapping",
+            "emotion": "surprise"
         },
         {
             "text": "Who",
@@ -468,7 +469,8 @@ const transcript = [
         {
             "text": "podcast?",
             "end": "35.500",
-            "message": "Audience cheering & clapping"
+            "message": "Audience cheering & clapping",
+            "emotion": "trust"
         },
         {
             "text": "I",
@@ -553,7 +555,8 @@ const transcript = [
         {
             "text": "is.",
             "end": "44.400",
-            "message": "Audience cheering & clapping"
+            "message": "Audience cheering & clapping",
+            "emotion": "anger"
         }
     ],
     [
@@ -636,7 +639,8 @@ const transcript = [
         {
             "text": "TV?",
             "end": "54.700",
-            "message": "Michael Barbaro is playfully joking"
+            "message": "Michael Barbaro is playfully joking",
+            "emotion": "joy"
         }
     ],
     [
