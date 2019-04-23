@@ -34,10 +34,10 @@ Marie wants to read the transcription of a podcast and understand the nuances(cl
 
 ### Exclusive Design Principles
 
-####Study Situation
+#### Study Situation
 
-####Ignore Conventions
+#### Ignore Conventions
 
-####Prioritise Identity
+#### Prioritise Identity
 
-####Add Nonsense
+#### Add Nonsense
