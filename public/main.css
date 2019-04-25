@@ -9,19 +9,20 @@ body {
 }
 
 header {
-    text-align: center;
-    margin-top: -85px;
+    display: grid;
+    grid-template-columns: 5em auto;
 }
 
 h1 {
     font-weight: 600;
-    padding: 1em;
+    text-align: center;
+    padding: 0.5em;
 }
 
 #transcript {
     display: flex;
     justify-content: center;
-    margin: 1em;
+    margin: 2em;
 }
 
 .speaker {
@@ -43,20 +44,16 @@ h1 {
 
 .speeches {
     display: grid;
-    grid-template-columns: 15% 85%;
+    grid-template-columns: 80px auto;
     width: 800px;
-    grid-gap: 1em;
+    grid-gap: 2em;
     margin-bottom: 70px;
+    line-height: 26px;
 }
 
 .speech {
-    position: relative;
-    display: table;
-}
-
-.words {
-    vertical-align: middle;
-    display: table-cell;
+    display: flex;
+    align-items: center;
 }
 
 .audio-player {
@@ -120,9 +117,9 @@ h1 {
 .modal-content {
     background-color: #fefefe;
     margin: 2em auto; /* 15% from the top and centered */
-    padding: 20px;
+    padding: 10px;
     border: 1px solid #888;
-    width: 50%; /* Could be more or less, depending on screen size */
+    width: 80%; /* Could be more or less, depending on screen size */
 }
 
 .modal-center {
@@ -158,5 +155,6 @@ h1 {
 }
 
 .wheel-emotions-img {
-    height: 650px;
+    height: auto;
+    width: auto;
 }

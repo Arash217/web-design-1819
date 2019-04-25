@@ -185,7 +185,7 @@ const transcript = [
             "end": "12.000"
         },
         {
-            "text": "Pub.",
+            "text": "Pub.\n\n",
             "end": "12.200"
         },
         {
@@ -393,7 +393,7 @@ const transcript = [
             "end": "27.500"
         },
         {
-            "text": "now.\n",
+            "text": "now.\n\n",
             "end": "27.700"
         },
         {
@@ -425,7 +425,7 @@ const transcript = [
             "end": "30.000"
         },
         {
-            "text": "Media?",
+            "text": "Media?\n",
             "end": "30.300",
             "message": "Audience cheering & clapping",
             "emotion": "surprise"
@@ -467,7 +467,7 @@ const transcript = [
             "end": "35.200"
         },
         {
-            "text": "podcast?",
+            "text": "podcast?\n",
             "end": "35.500",
             "message": "Audience cheering & clapping",
             "emotion": "surprise"
@@ -485,7 +485,7 @@ const transcript = [
             "end": "37.400"
         },
         {
-            "text": "news.",
+            "text": "news.\n\n",
             "end": "37.600"
         },
         {
@@ -525,7 +525,7 @@ const transcript = [
             "end": "40.600"
         },
         {
-            "text": "Barbaro.",
+            "text": "Barbaro.\n",
             "end": "40.900"
         },
         {

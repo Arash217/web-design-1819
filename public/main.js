@@ -1,12 +1,6 @@
 const player = new Plyr('audio', {'preload': 'auto'});
 const transcriptNode = document.querySelector('#transcript');
 
-// let audio;
-//
-// function preload() {
-//     audio = loadSound(player.source);
-// }
-
 /* Different datastructuur? */
 
 const peter = {name: 'Peter Kafka', photo: 'images/peter.png'};
@@ -19,7 +13,10 @@ transcript[3].speaker = michael;
 transcript[4].speaker = peter;
 transcript[5].speaker = michael;
 
-transcript.forEach(speech => speech.forEach(word => word.speaker = speech.speaker));
+transcript.forEach((speech, index) => speech.forEach(word => {
+    word.speaker = speech.speaker;
+    word.speech = index;
+}));
 
 const transcriptList = [].concat(...transcript);
 
@@ -42,6 +39,14 @@ const renderTranscript = () => {
         speakerNode.classList.add('speaker');
         wordsContainerNode.classList.add('words');
 
+        const tippyInstanceSpeaker = tippy(speakerNode, {
+            arrow: true,
+            content: speech.speaker.name,
+            hideOnClick: false,
+            placement: 'left',
+            flipBehavior: ['left', 'top']
+        });
+
         speech.forEach(word => {
             const wordNode = document.createElement('span');
             wordNode.setAttribute('id', `word_${i++}`);
@@ -52,7 +57,7 @@ const renderTranscript = () => {
                 const tippyInstance = tippy(wordNode, {
                     theme: word.emotion,
                     arrow: true,
-                    content: `${capitalizeFirstLetter(word.emotion)} - ${word.message}`,
+                    content: `<strong>${capitalizeFirstLetter(word.emotion)}</strong> - ${word.message}`,
                     hideOnClick: false,
                     onShow(instance) {
                         clearTimeout(instance.timeOutId);
@@ -64,7 +69,7 @@ const renderTranscript = () => {
                 word.tippy = tippyInstance;
                 tippyInstance.disable();
             }
-
+            word.tippySpeaker = tippyInstanceSpeaker;
             wordsContainerNode.appendChild(wordNode);
         });
 
@@ -78,6 +83,8 @@ const renderTranscript = () => {
 
 renderTranscript();
 
+let previousWord = null;
+
 /* Todo: optimize performance */
 player.on('timeupdate', () => {
     for (let i = 0; i < transcriptList.length; i++) {
@@ -88,6 +95,11 @@ player.on('timeupdate', () => {
             if (!word.read) {
                 wordNode.classList.remove('grey');
                 wordNode.classList.add('black');
+                wordNode.scrollIntoView({
+                    block: 'center',
+                    behavior: 'smooth',
+                    inline: "nearest"
+                });
 
                 if (word.tippy) {
                     word.tippy.enable();
@@ -95,7 +107,13 @@ player.on('timeupdate', () => {
                     wordNode.classList.add(word.emotion);
                 }
 
+                if (previousWord && previousWord.speech !== word.speech){
+                    previousWord.tippySpeaker.hide();
+                }
+
+                word.tippySpeaker.show();
                 word.read = true;
+                previousWord = word;
             }
             continue;
         }
@@ -103,12 +121,23 @@ player.on('timeupdate', () => {
         if (word.read) {
             wordNode.classList.remove(...wordNode.classList);
             wordNode.classList.add('grey');
+            wordNode.scrollIntoView({
+                block: 'center',
+                behavior: 'smooth',
+                inline: "nearest"
+            });
 
             if (word.tippy) {
                 word.tippy.hide();
                 word.tippy.disable();
             }
 
+            if (previousWord && previousWord.speech !== word.speech){
+                previousWord.tippySpeaker.hide();
+            }
+
+            word.tippySpeaker.show();
+            previousWord = word;
             word.read = false;
         }
     }
@@ -126,42 +155,16 @@ var span = document.getElementsByClassName("close")[0];
 // When the user clicks on the button, open the modal
 btn.onclick = function() {
     modal.style.display = "block";
-}
+};
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
     modal.style.display = "none";
-}
+};
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
     if (event.target == modal) {
         modal.style.display = "none";
     }
-}
-
-// let cnv;
-// let amplitude;
-//
-// function setup() {
-//     cnv = createCanvas(100, 100);
-//     amplitude = new p5.Amplitude();
-//
-//     // start / stop the sound when canvas is clicked
-//
-//     player.on('play', () => {
-//         audio.play();
-//     });
-//
-//     player.on('pause', () => {
-//         audio.stop();
-//     });
-// }
-//
-// function draw() {
-//     background(0);
-//     fill(255);
-//     var level = amplitude.getLevel();
-//     var size = map(level, 0, 1, 0, 200);
-//     ellipse(width/2, height/2, size + 80, size + 80);
-// }
+};
