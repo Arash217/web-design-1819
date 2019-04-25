@@ -470,7 +470,7 @@ const transcript = [
             "text": "podcast?",
             "end": "35.500",
             "message": "Audience cheering & clapping",
-            "emotion": "trust"
+            "emotion": "surprise"
         },
         {
             "text": "I",
@@ -556,7 +556,7 @@ const transcript = [
             "text": "is.",
             "end": "44.400",
             "message": "Audience cheering & clapping",
-            "emotion": "anger"
+            "emotion": "surprise"
         }
     ],
     [
