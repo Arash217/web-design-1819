@@ -52,8 +52,16 @@ Adding nonsense to go beyond the functional.
 
 #### Appearance follows behavior
 
+TODO: add description and sketches
+
 #### Smart organization reduces cognitive load
+
+TODO: add description and sketches
 
 #### Highlight, don't determine, with color
 
+TODO: add description and sketches
+
 #### A crucial moment: the zero state
+
+TODO: add description and sketches
