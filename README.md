@@ -48,5 +48,12 @@ For example, I added her idea of having colours based on emotions to the tooltip
 #### Add Nonsense
 Adding nonsense to go beyond the functional.
 
-
 ### Principles of User Interface Design
+
+#### Appearance follows behavior
+
+#### Smart organization reduces cognitive load
+
+#### Highlight, don't determine, with color
+
+#### A crucial moment: the zero state
