@@ -35,11 +35,18 @@ Marie wants to read the transcription of a podcast and understand the nuances(cl
 ### Exclusive Design Principles
 
 #### Study Situation
+Observing Marie during the weekly review helped me to understand her problems, wishes and needs better.
 
 #### Ignore Conventions
+Since Marie is deaf, applying design patterns and/or conventions won't help me to solve her problems.
+One convention that I did different, is, highlighting the spoken words in the transcript by their time.
 
 #### Prioritise Identity
+Marie playing an active role in the design process of the app helped me to prioritise her indentity in the app.
+For example, I added her idea of having colours based on emotions to the tooltips.
 
 #### Add Nonsense
+Adding nonsense to go beyond the functional.
+
 
 ### Principles of User Interface Design
