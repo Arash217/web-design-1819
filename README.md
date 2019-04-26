@@ -66,7 +66,7 @@ TODO: add description and sketches
 
 TODO: add description and sketches
 
-### Feedback
+### Research & Feedback 
 
-TODO: Add the weekly feedbacks
+TODO: Add research and the feedbacks
 
