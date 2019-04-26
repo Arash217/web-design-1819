@@ -65,3 +65,8 @@ TODO: add description and sketches
 #### A crucial moment: the zero state
 
 TODO: add description and sketches
+
+### Feedback
+
+TODO: Add the weekly feedbacks
+
